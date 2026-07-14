@@ -57,7 +57,7 @@ The real matter at hand is reducing how much cognitive load (measured in tokens)
 </ul>
 
 <h2 id="dont-play-the-odds">Don't Play the Odds, Play the Bot</h2>
-<p><a href="https://tvgag.com/gag/i-dont-play-the-odds-i-play-the-man/">Harvey</a></p>
+<img src="harvey.jpg" alt="Harvey Specter: I don't play the odds, I play the man." style="max-width:100%;">
 <p>A good harness MUST make use of the a priori coding knowledge of the LLM. LLMs are heavily overtrained on coding and systems administration, so give them an environment they are already comfortable in; wrangling them through a novel one ultimately wastes tokens. Similarly, precious context should not be wasted on things like file discovery, traversal, etc. -- good harnesses make delegation <em>easy and efficient</em>. At the same time, a harness should feel light to the LLM, but actually do a lot of things in the background. These include logging, sanity checks, failsafes, sanitizations, etc.</p>
 
 <h2 id="auditability">Auditability, Logging, and Self-Healing</h2>
@@ -71,14 +71,18 @@ The real matter at hand is reducing how much cognitive load (measured in tokens)
 
 <h2 id="mapping">Mapping Concepts of Old to New, and the Unix Philosophy</h2>
 <p>In case you might have forgotten, or not seen it before, here is the creed of our forefathers Ritchie and Thompson:</p>
-<blockquote><p>Write programs that do one thing and do it well. To do a new job, build afresh rather than complicate old programs by adding new "features".<br>
-Write programs to work together. Expect the output of every program to be the input for another program.<br>
-Write programs to handle text streams, because that is a universal interface.</p></blockquote>
+<blockquote><ol>
+<li>Write programs that do one thing and do it well. To do a new job, build afresh rather than complicate old programs by adding new "features".</li>
+<li>Write programs to work together. Expect the output of every program to be the input for another program.</li>
+<li>Write programs to handle text streams, because that is a universal interface.</li>
+</ol></blockquote>
 <p>These perfectly encapsulate the issues with harnesses today: they're overly complicated, attempting to do a lot of things, and the trajectories our Agents are expected to take are ill-defined. These are symptoms of the same issue: there is no way for the Agent to hold agency over itself. In many cases today, tools are directly loaded into context, and system prompts are preemptively filled with warnings and specific rules and guidelines that developers have (which eventually fade turn-over-turn).</p>
 <p>We can then derive our own set of principles for designing our harness:</p>
-<blockquote><p>Write modular, transparent tools that do one thing and do it well; ensure they fail loudly.<br>
-Write tools, skills, and connectors that work together. Skills dictate workflows, tools are the means to execute them, and connectors are the data which the Agent manipulates.<br>
-Text streams are a universal interface, and a Language Model has home-court advantage. Everything <em>should</em> be a flat text file.</p></blockquote>
+<blockquote><ol>
+<li>Write modular, transparent tools that do one thing and do it well; ensure they fail loudly.</li>
+<li>Write tools, skills, and connectors that work together. Skills dictate workflows, tools are the means to execute them, and connectors are the data which the Agent manipulates.</li>
+<li>Text streams are a universal interface, and a Language Model has home-court advantage. Everything <em>should</em> be a flat text file.</li>
+</ol></blockquote>
 
 <h1 id="ambiance">Ambiance: My Take on Harnesses</h1>
 
