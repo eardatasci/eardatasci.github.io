@@ -57,7 +57,7 @@ The real matter at hand is reducing how much cognitive load (measured in tokens)
 </ul>
 
 <h2 id="dont-play-the-odds">Don't Play the Odds, Play the Bot</h2>
-<img src="harvey.jpg" alt="Harvey Specter: I don't play the odds, I play the man." style="max-width:100%;">
+<img src="harvey.jpg" alt="Harvey Specter: I don't play the odds, I play the man." style="width:60%; max-width:100%;">
 <p>A good harness MUST make use of the a priori coding knowledge of the LLM. LLMs are heavily overtrained on coding and systems administration, so give them an environment they are already comfortable in; wrangling them through a novel one ultimately wastes tokens. Similarly, precious context should not be wasted on things like file discovery, traversal, etc. -- good harnesses make delegation <em>easy and efficient</em>. At the same time, a harness should feel light to the LLM, but actually do a lot of things in the background. These include logging, sanity checks, failsafes, sanitizations, etc.</p>
 
 <h2 id="auditability">Auditability, Logging, and Self-Healing</h2>
