@@ -1,8 +1,9 @@
 {
-  "pid": 76198,
-  "port": 29042,
-  "token": "7e6dcd36-f2d8-45d7-936c-677def20bd49",
-  "startedAt": "2026-04-09T23:43:14.858Z",
+  "pid": 82675,
+  "port": 39945,
+  "token": "d26a1c19-e8dc-4d11-bb4d-541319bda737",
+  "startedAt": "2026-07-15T11:44:16.667Z",
   "serverPath": "/Users/arda/.claude/skills/gstack/browse/src/server.ts",
-  "mode": "launched"
+  "mode": "launched",
+  "configHash": "303a7eeccc03078b"
 }
