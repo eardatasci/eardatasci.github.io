@@ -62,12 +62,18 @@ The real matter at hand is reducing how much cognitive load (measured in tokens)
 </ul>
 
 <h2 id="dont-play-the-odds">Don't Play the Odds, Play the Bot</h2>
-<img src="harvey.jpg" alt="Harvey Specter: I don't play the odds, I play the man." style="width:60%; max-width:100%; margin-top:1.2em;">
-<p>A good harness MUST make use of the a priori coding knowledge of the LLM. LLMs are heavily overtrained on coding and systems administration, so give them an environment they are already comfortable in; wrangling them through a novel one ultimately wastes tokens. Similarly, precious context should not be wasted on things like file discovery, traversal, etc. -- good harnesses make delegation <em>easy and efficient</em>. At the same time, a harness should feel light to the LLM, but actually do a lot of things in the background. These include logging, sanity checks, failsafes, sanitizations, etc.</p>
+<img src="harvey.jpg" alt="Harvey Specter: I don't play the odds, I play the man." style="display:block; width:60%; max-width:100%; margin:1.2em auto 0;">
+<p>A good harness MUST make use of the a priori coding knowledge of the LLM. Coding and systems administration are heavily overrepresented in the LLM's training data, so give it an environment it is already comfortable in; wrangling it through a novel one ultimately wastes tokens. Similarly, precious context should not be wasted on things like file discovery, traversal, etc. -- good harnesses make delegation <em>easy and efficient</em>. At the same time, a harness should feel light to the LLM, but actually do a lot of things in the background. These include logging, sanity checks, failsafes, sanitizations, etc.</p>
 
 <h2 id="auditability">Auditability, Logging, and Self-Healing</h2>
-<p>Everything is vulnerable, and all agents eventually fail. There are two types of failures: harness and LLM. LLM failures can't be patched, but the risk can be mitigated by the harness, whereas harness failures can be recovered and <em>should</em> be fixable at runtime due to the turn-based nature of an LLM.</p>
-<p>In order to fix a harness defect, the Agent needs two things: logs on runtime, and the error message that occurred. In order to <em>mitigate</em> the risk of an LLM defect, multiple passes with different instances can be used to verify sanity alongside clever compacting/clearing strategies.</p>
+<p>Everything is vulnerable, and all agents eventually fail. There are two types of Agent failures:</p>
+<ul>
+  <li>LLM Level</li>
+  <li>Harness Level</li>
+</ul>
+<p>Failures at the LLM level cannot be directly patched, but the risk of such a failure can be mitigated by the harness.<br>
+Harness-level failures can be recovered from, and <em>should</em> be fixable at runtime due to the turn-based nature of the LLM.</p>
+<p>In order to fix a defect, the Agent needs two things: great logging, and a clear error message.</p>
 
 <h2 id="unified-data-layer">A Unified Data Layer That Can Do It All</h2>
 <p>Most of these requirements are age-old questions; only the verbiage has shifted from Users to Agents. So it's worth asking: <em>what can we learn from the before-fore times, when people used to actually write code?</em></p>
