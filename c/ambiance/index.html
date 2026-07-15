@@ -4,17 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:type" content="article"/>
-<title>ardatasc.github.io</title>
+<title>arda tasci</title>
 <link rel="icon" href="../../favicon.png" type="image/x-icon">
 <link rel="preconnect" href="https://fonts.googleapis.com/">
 <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../theme.min.7363202e6ba39c3b4caca8b218f6f6631256ed7a41cd2f8bf46550651b07cb31.css" integrity="">
 <style>
 .content table { border-collapse: collapse; margin: 1em 0; }
 .content th, .content td { border: 1px solid rgba(128,128,128,0.5); padding: 0.4em 0.9em; text-align: left; }
-.content blockquote { border-left: 3px solid rgba(128,128,128,0.6); margin: 1.2em 0; padding: 0.4em 1.2em; opacity: 0.9; font-style: italic; font-size: 1em; line-height: 1.6; }
+.content blockquote { border-left: 3px solid rgba(128,128,128,0.6); margin: 1.2em 0; padding: 0.4em 1.2em; color: inherit; opacity: 0.7; font-style: italic; font-size: 1em; line-height: 1.6; }
 .content h1 { border-bottom: 2px solid rgba(128,128,128,0.45); padding-bottom: 0.35em; margin-top: 1.6em; }
 .content h2 { border-bottom: 1px solid rgba(128,128,128,0.35); padding-bottom: 0.3em; margin-top: 1.8em; }
 .content h3 { margin-top: 1.5em; }
@@ -26,7 +26,7 @@
   <div class="header">
   <div class="header-content">
   <div class="header-content-title">
-  ardatasc
+  arda tasci
   </div>
   <div class="header-content-nav">
   <div class="header-content-nav-item">
@@ -61,7 +61,7 @@ The real matter at hand is reducing how much cognitive load (measured in tokens)
 </ul>
 
 <h2 id="dont-play-the-odds">Don't Play the Odds, Play the Bot</h2>
-<img src="harvey.jpg" alt="Harvey Specter: I don't play the odds, I play the man." style="width:60%; max-width:100%;">
+<img src="harvey.jpg" alt="Harvey Specter: I don't play the odds, I play the man." style="width:60%; max-width:100%; margin-top:1.2em;">
 <p>A good harness MUST make use of the a priori coding knowledge of the LLM. LLMs are heavily overtrained on coding and systems administration, so give them an environment they are already comfortable in; wrangling them through a novel one ultimately wastes tokens. Similarly, precious context should not be wasted on things like file discovery, traversal, etc. -- good harnesses make delegation <em>easy and efficient</em>. At the same time, a harness should feel light to the LLM, but actually do a lot of things in the background. These include logging, sanity checks, failsafes, sanitizations, etc.</p>
 
 <h2 id="auditability">Auditability, Logging, and Self-Healing</h2>
