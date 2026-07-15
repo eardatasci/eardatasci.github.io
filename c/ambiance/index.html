@@ -35,17 +35,16 @@
   </div>
 <div class="content-container">
 <div class="content"><h1 id="title">Towards a Harness That Can Do Anything</h1>
-<p>I've been thinking about how to free LLMs from the chat pane for a few years now. Watching what people have tried -- what worked, what didn't -- I've formed my own opinions on the right way to approach it. Here are those thoughts, and what I've been working on recently.</p>
+<p>I've been thinking about how to free LLMs from the chat pane for a few years now. Watching what people have tried and seeing what worked (and didn't), I've formed my own opinions on the right way to approach it. Here are my thoughts, and what I've been working on recently.</p>
 
 <h2 id="what-makes-a-good-harness">What Makes a Good Harness</h2>
-<p>How do we achieve such a result?</p>
 <ul>
   <li>I. Should be naturally intuitive to the Agent.</li>
   <li>II. Everything should be transparent so that the Agent can self-develop or heal (or audited postmortem).</li>
-  <li>III. Surely must be agile, lean and flexible.</li>
+  <li>III. Must be as lean as possible and flexible.</li>
   <li>IV. Error survival, update survival, no memory corruption or degradation over time.</li>
 </ul>
-<blockquote><p>With the advancing intelligence of LLMs, harnesses will eventually be ((reliable)).<br>
+<blockquote><p>With the advancing intelligence of LLMs, harnesses will eventually be <i>reliable</i>.<br>
 The real matter at hand is reducing how much cognitive load (measured in tokens) you are putting on your bot.</p></blockquote>
 
 <h2 id="preliminary-truths">Preliminary Truths</h2>
@@ -82,7 +81,7 @@ Harness-level failures can be recovered from, and <em>should</em> be fixable at 
 <li>Write programs to work together. Expect the output of every program to be the input for another program.</li>
 <li>Write programs to handle text streams, because that is a universal interface.</li>
 </ol></blockquote>
-<p>These perfectly encapsulate the issues with harnesses today: they're overly complicated, attempting to do a lot of things, and the trajectories our Agents are expected to take are ill-defined. These are symptoms of the same issue: there is no way for the Agent to hold agency over itself. In many cases today, tools are directly loaded into context, and system prompts are preemptively filled with warnings and specific rules and guidelines that developers have (which eventually fade turn-over-turn).</p>
+<p>These perfectly encapsulate the issues with harnesses today: they're overly complicated, attempting to do a lot of things, and the trajectories our Agents are expected to take are often ill-defined. These are symptoms of the same issue: there is no way for the Agent to hold agency over itself. In many cases today, tools are directly loaded into context, and system prompts are preemptively filled with warnings and specific rules and guidelines that developers have (which eventually fade turn-over-turn).</p>
 <p>We can then derive our own set of principles for designing our harness:</p>
 <blockquote><ol>
 <li>Write modular, transparent tools that do one thing and do it well; ensure they fail loudly.</li>
@@ -111,7 +110,7 @@ Harness-level failures can be recovered from, and <em>should</em> be fixable at 
 </tbody>
 </table>
 
-<h2 id="tickless">Tickless vs "Heartbeat" System</h2>
+<h2 id="tickless">The "Kernel"</h2>
 <p>Now that we've established what our filesystem should look like, let's think about how the Agent will interact with the environment (or rather, <em>when</em>). The industry standard for always-on Agents, OpenClaw, pairs event-driven message handling with a heartbeat: a full agent turn on a fixed interval (30 minutes by default) to check whether anything needs attention. The trouble is that everything that isn't a pushed message, like file changes or external state, only gets noticed at heartbeat granularity. Tighten the interval and you burn a full LLM turn on every empty check; loosen it and the agent is up to an hour behind the world.</p>
 <p>Thus, I decided to build Ambiance around an event bus that I misnomerously call "the Kernel". It watches our FS for changes with cursors on textfiles, and then invokes the LLM accordingly (with a few coalescence strategies to handle high throughput). That way you can ensure that the Agent never misses a single notification. Additionally, you can also wire up different 'users' (LLM instances) to respond to different events.</p>
 
@@ -128,7 +127,7 @@ Harness-level failures can be recovered from, and <em>should</em> be fixable at 
 <p>All three are constantly communicating with each other via the event bus and a <code>send-message</code> binary.</p>
 
 <h2 id="try-it">Try It</h2>
-<p>The bet behind Ambiance is simple: the model's priors are the cheapest resource you have, so a harness built out of things the model already knows (files, users, logs, docs) will always beat one it has to be taught. Everything else here, the Kernel, the FHS, the tickless event bus, is just plumbing in service of that bet.</p>
+<p>The idea behind Ambiance is simple: the model's priors are the cheapest resource you have, so a harness built out of things the model already knows (files, users, logs, docs) will always beat one it has to be taught. Everything else here is just in service of that.</p>
 <p>Ambiance is a work in progress, but you can try it today at <a href="https://whitematterlabs.ai">whitematterlabs.ai</a>, or skip straight to:</p>
 <pre tabindex="0"><code>curl -fsSL https://raw.githubusercontent.com/whitematterlabs/ambiance/main/install.sh | sh</code></pre>
 <p><em>PS: Do projects like this interest you? Are you working on projects like this yourself? You should totally check out the <a href="https://www.recurse.com">Recurse Center</a>, which is where I started building this out!</em></p>
