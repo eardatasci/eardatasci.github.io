@@ -1,9 +1,0 @@
-{
-  "pid": 82675,
-  "port": 39945,
-  "token": "d26a1c19-e8dc-4d11-bb4d-541319bda737",
-  "startedAt": "2026-07-15T11:44:16.667Z",
-  "serverPath": "/Users/arda/.claude/skills/gstack/browse/src/server.ts",
-  "mode": "launched",
-  "configHash": "303a7eeccc03078b"
-}
